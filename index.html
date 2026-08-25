@@ -209,9 +209,6 @@
   }
   .scroll-cue::after{content:"";width:1px;height:38px;background:var(--ink-soft);}
 
-  /* ---------- SPACER controlling pin scrub length ---------- */
-  #pin-spacer{height:140vh;}
-
   /* ---------- SECTION SHELL ---------- */
   section{position:relative;background:var(--putty);}
   .wrap{
@@ -362,8 +359,6 @@
   <div class="scroll-cue">SCROLL</div>
 </section>
 
-<div id="pin-spacer"></div>
-
 <section id="process">
   <div class="wrap">
     <div class="section-head">
@@ -472,6 +467,11 @@
 gsap.registerPlugin(ScrollTrigger);
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const heroVideoEl = document.querySelector('#videoFrame video');
+if(heroVideoEl){
+  heroVideoEl.addEventListener('loadedmetadata', () => ScrollTrigger.refresh());
+}
 
 if(!reduceMotion){
 
